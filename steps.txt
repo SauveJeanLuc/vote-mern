@@ -1,0 +1,23 @@
+// APP Stack: Mongo + Express + React + Node
+
+===============
+    CLIENT
+===============
+
+* Create client directory with : npm init vite --> Choose React
+* npm install
+* npm run dev
+
+
+
+===============
+    SERVER
+===============
+
+* Create server directory with : mkdir server 
+* Inside the directory: npm init
+* Install Express: npm install express
+* Install nodemon: npm install nodemon
+* Set Nodemon Script in package.json
+* Create Express Server
+ 
