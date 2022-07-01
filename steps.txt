@@ -7,6 +7,7 @@
 * Create client directory with : npm init vite --> Choose React
 * npm install
 * npm run dev
+* Add form whose states are kept with useState hooks + onChange and value
 
 
 
@@ -18,6 +19,11 @@
 * Inside the directory: npm init
 * Install Express: npm install express
 * Install nodemon: npm install nodemon
-* Set Nodemon Script in package.json
-* Create Express Server
+* Set Nodemon Script in package.json + add gitignore
+* Create Express Server : require('express')
+* Handle CORS : npm install cors
+* add express.json()
+* Add Mongoose
+* Create Schema
+* sudo service mongod start
  
