@@ -1,64 +1,23 @@
-import { useState } from 'react'
+import React from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  async function registerUser(event) {
-    event.preventDefault();
-
-    console.log('At least I reached here 3')
-    const response = await fetch('http://localhost:3030/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password
-      }),
-    }) 
-    const data = await response.json();
-
-    console.log('At least I reached here')
-    console.log(data);
-  }
-  
-
-  return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
-        <input
-         value={name}
-         onChange={function(e){
-          setName(e.target.value);
-         }}
-         type="text" 
-         placeholder='Name'
-        />
-        <input
-         value={email}
-         onChange={function(e){
-          setEmail(e.target.value);
-         }}        
-         type="email" 
-         placeholder='Last Name' 
-        />
-        <input 
-          value={password}
-          onChange={function(e){
-            setPassword(e.target.value);
-           }}          
-          type={password} 
-          placeholder='Password' />
-        
-        <input type="submit" value="Register"/>
-      </form>
-    </div>
-  )
+export default function App() {
+    return (
+        // <div>
+                <Routes>
+                    <Route exact path="/"  element={<Login/>}></Route>
+                    <Route exact path="/login"  element={<Login/>}></Route>
+                    <Route exact path="/register" element={<Register/>}></Route>
+                    <Route exact path="/dashboard" element={<Dashboard/>}></Route>
+                </Routes>
+            // {/* <span>Me Trying</span> */}
+        // </div>
+    );
 }
 
-export default App
+
+
