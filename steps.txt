@@ -8,6 +8,8 @@
 * npm install
 * npm run dev
 * Add form whose states are kept with useState hooks + onChange and value
+* Perfom requests using fetch
+* Add react-router-dom: npm install react-router-dom --save
 
 
 
@@ -21,9 +23,11 @@
 * Install nodemon: npm install nodemon
 * Set Nodemon Script in package.json + add gitignore
 * Create Express Server : require('express')
-* Handle CORS : npm install cors
+* Handle CORS : npm install cors : app.use(corse())
 * add express.json()
 * Add Mongoose
 * Create Schema
 * sudo service mongod start
+* Add jsonwebtoken implementation of json web tokens
+* include bcrypt js for hashing passwords
  
