@@ -18,15 +18,16 @@ router.post('/register', async (req, res)=>{
             password: hashedPassword,
         })
 
-        res.json({
-            status : 'ok',
+        res.status(201).send({
+            status : '201 Created',
+            message: 'User Created Successfully',
             data: user,
         })
 
     } catch (err){
-        res.json({
-            status : 'error',
-            err: err
+        res.status(500).send({
+            status : 'Error occured',
+            message: err
         })
     }
 
@@ -63,9 +64,9 @@ router.post('/login', async (req, res) => {
 
     }
     catch(err){
-        res.json({
-            status: 'error',
-            err: err
+        res.status(500).send({
+            status : 'Error occured',
+            message: err
         })
     }
 })
