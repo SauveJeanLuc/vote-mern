@@ -1,0 +1,14 @@
+cd server directory
+
+sudo su
+
+// . -> current directory
+docker build <directory-of-dockerfile> -t(custom name) <custom-name> -f(file: default Dockerfile) <custom-file> 
+docker build . -t sauvejeanluc/votingapp-server -f Dockerfile.dev
+
+//
+docker images
+
+//run
+docker run -p <port-pc>:<port-container> <image-name>
+docker run -p 3030:3030 sauvejeanluc/votingapp-server
