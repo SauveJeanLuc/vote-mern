@@ -1,0 +1,38 @@
+version: '2.2'
+services:
+  client:
+    depends_on: [server]
+    build:
+      context: ./client # Find docker file in dir
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000" # <pc-port: dockerfile-port>
+    volumes:
+      - /usr/node_modules
+    restart: on-failure
+    container_name: client # must be globally unique and is used in integration
+
+  server:
+    depends_on:
+      - mongo
+    build:
+      context: ./server # Find docker file in dir
+      dockerfile: Dockerfile
+    ports:
+      - "3030:3030" # <pc-port: dockerfile-port>
+    volumes:
+      - /usr/node_modules
+    restart: on-failure
+    container_name: server # must be globally unique and is used in integration
+    env_file:
+      - ./server/.env
+
+  mongo:
+    image: mongo
+    restart: on-failure
+    container_name: mongo-db
+    ports:
+      - "27018:27017" # <pc-port: dockerfile-port>
+    volumes:
+      - ./db-service/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./db-service/mongo:/data/db
