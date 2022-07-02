@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "NODE_ENV=development nodemon index.js",
+    "container": "NODE_ENV=container nodemon index.js"
   },
   "keywords": [
     "nodejs",
@@ -16,6 +17,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "joi": "^17.6.0",
     "joi-password": "^3.0.1",
