@@ -1,3 +1,4 @@
+const dotenv = require('dotenv')
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -5,11 +6,18 @@ const mongoose = require('mongoose')
 const userRoutes = require('./routes/user.route')
 const candidateRoutes = require('./routes/candidate.route')
 
+dotenv.config()
 app.use(cors()) // Handle CORS
 app.use(express.json()) // Parse Everything that comes as req.body json
 
+const env = process.env.NODE_ENV || "development";
+
+const DB_URL =  env === "container" ? process.env.DB_URL_CONTAINER : process.env.DB_URL_DEV
+
+console.log('Link: ' + DB_URL)
+
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/voting-mern')
+mongoose.connect(DB_URL)
 .then( () => console.log ("Connected to DB" )) 
 .catch( (err) => console.error("Could not connect to MongoDB"))
 
