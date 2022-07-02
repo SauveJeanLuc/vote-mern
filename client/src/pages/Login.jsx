@@ -8,7 +8,7 @@ function Login(){
     async function handleLogin(event){
         event.preventDefault()
         
-        const response = await fetch('http://localhost:3030/api/login', {
+        const response = await fetch('http://localhost:3030/api/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -30,6 +30,7 @@ function Login(){
         }
 
     }
+    
     return (
         <div>
             <h1> Log In </h1>

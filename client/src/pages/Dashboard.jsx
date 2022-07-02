@@ -75,7 +75,11 @@ export default function Dashboard  () {
 
    return (
       <div>
-         <h1>Your quote: {quote || "No quote found "}</h1> 
+         <h1>
+            Logged In To VOTE YOUR CHOICE
+         </h1>
+
+         {/* <h1>Your quote: {quote || "No quote found "}</h1> 
          <form onSubmit={updateQuote}>
             <input 
                type="text" 
@@ -84,11 +88,7 @@ export default function Dashboard  () {
                onChange={(e) => setTempQuote(e.target.value)}
             />
             <input type="submit" value=" Update Quote "/>
-         </form>
-         <form onSubmit={populateQuote}>
-         
-            <input type="submit" value="Force Fetch "/>
-         </form>
+         </form> */}
       </div>
    )
    

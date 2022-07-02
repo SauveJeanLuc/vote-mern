@@ -9,7 +9,7 @@ function Register() {
   async function registerUser(event) {
     event.preventDefault();
 
-    const response = await fetch('http://localhost:3030/api/register', {
+    const response = await fetch('http://localhost:3030/api/user/register', {
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json'
@@ -24,7 +24,7 @@ function Register() {
 
     console.log(data);
 
-    if(data.status === 'ok') {
+    if(data.status === '201 Created') {
       window.location.href = '/login'
     }
 
