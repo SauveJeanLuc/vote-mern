@@ -1,0 +1,18 @@
+cd client directory
+
+sudo su
+
+// . -> current directory
+docker build . -t sauvejeanluc/votingapp-client -f Dockerfile.dev
+
+//
+docker images
+
+//run
+docker run -p <port-pc>:<port-container> <image-name>
+docker run -p 3000:3000 sauvejeanluc/votingapp-server
+
+// push
+
+docker login
+docker push <image-name>
