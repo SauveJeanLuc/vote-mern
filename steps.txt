@@ -10,7 +10,7 @@
 * Add form whose states are kept with useState hooks + onChange and value
 * Perfom requests using fetch
 * Add react-router-dom: npm install react-router-dom --save
-
+* Add react-bootstrap
 
 
 ===============
@@ -30,4 +30,14 @@
 * sudo service mongod start
 * Add jsonwebtoken implementation of json web tokens
 * include bcrypt js for hashing passwords
- 
+* Include Joi for validations
+
+
+===============
+    DOCKER
+===============
+
+- dockerize server 
+- dockerize client
+- run docker-compose : docker-compose up
+- 
