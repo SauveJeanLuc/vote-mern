@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
         
         if(error) {
             return res.status(400).send({
-                status: '400',
+                status: '400 Bad Request',
                 message: error.details[0].message,
             })
         }
@@ -23,8 +23,8 @@ router.post('/register', async (req, res) => {
         })
 
         if(candidate){
-            res.json({
-                status: '200',
+            res.status(201).json({
+                status: '201 Created',
                 data: candidate,
             })
         }
@@ -34,8 +34,8 @@ router.post('/register', async (req, res) => {
         console.log('Error: ' + err)
 
         res.status(500).json({
-            status: 'error message',
-            err: err[0]
+            status: 'Error Occured',
+            message: err
         })
 
     }
@@ -54,8 +54,8 @@ router.put('/:id', async(req, res) => {
         const {error} = validateCandidate(req.body);
 
         if(error){
-            return res.send({
-                status: '400',
+            return res.status(400).send({
+                status: '400 Bad Request',
                 message: error.details[0].message,
             })      
         }
@@ -72,20 +72,135 @@ router.put('/:id', async(req, res) => {
         )
 
         if(!candidate){
-            return res.send({
-                status: '200',
+            return res.status(400).send({
+                status: '400 Bad Request',
                 message: 'Candidate Not Found - Update Failed',
             })
         }
 
-        return res.send({
-            status: '400',
+        return res.status(200).send({
+            status: '200 OK',
             message: 'Candidate updated successfully',
             data: candidate
         })
 
     } catch (err){
+        console.log('Error: ' + err)
 
+        res.status(500).json({
+            status: 'Error Occured',
+            message: err
+        })
+    }
+})
+
+router.put('/vote/:id', async(req, res) => {
+    try{
+        if(!mongoose.Types.ObjectId.isValid(req.params.id)){
+            return res.send({
+                status: '400',
+                message: 'Invalid param id',
+            })
+        }
+
+        const candidateFound = await Candidate.findOne({
+            _id: req.params.id
+        })
+
+        var nbrOfVotes = candidateFound.nbrOfVotes + 1;
+        
+        const candidate = await Candidate.updateOne(
+            {_id: req.params.id},
+            {
+                $set : {
+                    nbrOfVotes: nbrOfVotes,
+                }
+            }
+        )
+
+        if(!candidate){
+            return res.status(400).send({
+                status: '400 Bad Request',
+                message: 'Candidate Not Found - Update Failed',
+            })
+        }
+
+        return res.status(200).send({
+            status: '200',
+            message: 'Candidate voted successfully',
+            data: candidate
+        })
+
+    } catch (err){
+        console.log('Error: ' + err)
+
+        res.status(500).json({
+            status: 'Error Occured',
+            message: err
+        })
+    }
+})
+
+router.put('/unvote/:id', async(req, res) => {
+    try{
+        if(!mongoose.Types.ObjectId.isValid(req.params.id)){
+            return res.send({
+                status: '400',
+                message: 'Invalid param id',
+            })
+        }
+
+        const {error} = validateCandidate(req.body);
+
+        if(error){
+            return res.status(400).send({
+                status: '400 Bad Request',
+                message: error.details[0].message,
+            })      
+        }
+
+        const candidateFound = await Candidate.findOne({
+            _id: req.params.id
+        })
+
+        if(!candidateFound){
+            return res.status(400).send({
+                status: '400 Bad Request',
+                message: 'Candidate Not Found - Update Failed',
+            })
+        }
+
+        var nbrOfVotes = candidateFound.nbrOfVotes - 1;
+        
+        const candidate = await Candidate.updateOne(
+            {_id: req.params.id},
+            {
+                $set : {
+                    nbrOfVotes: nbrOfVotes,
+                }
+            }
+        )
+
+        if(!candidate){
+            return res.status(400).send({
+                status: '400 Bad Request',
+                message: 'Candidate Not Found - Update Failed',
+            })
+        }
+
+        return res.status(200).send({
+            status: '200 Ok',
+            message: 'Candidate unvoted successfully',
+            data: candidate
+        })
+
+    } catch (err){
+        console.log('Error: ' + err)
+
+        res.status(500).json({
+            status: 'Error Occured',
+            message: err
+        })
     }
 })
 
@@ -103,14 +218,14 @@ router.get('/:id', async (req, res)=>{
     })
 
     if(!candidate){
-        return res.send({
-            status: '400',
+        return res.status(400).send({
+            status: '400 Bad Request',
             message: 'Candidate Not Found',
         })
     }
 
-    return res.send({
-        status: '200',
+    return res.status(200).send({
+        status: '200 OK',
         data: candidate
     })
 
@@ -118,8 +233,8 @@ router.get('/:id', async (req, res)=>{
 
 router.delete('/:id', async (req, res) => {
     if(!mongoose.Types.ObjectId.isValid(req.params.id)){
-        return res.send({
-            status: '400',
+        return res.status(400).send({
+            status: '400 Bad Request',
             message: 'Invalid param id',
         })
     }
@@ -130,15 +245,17 @@ router.delete('/:id', async (req, res) => {
 
     if(!candidate){
         return res.send({
-            status: '400',
+            status: '400 Bad Request',
             message: 'Candidate Not Found',
         })
     }
 
-    return res.send({
-        status: '200',
+    return res.status(200).send({
+        status: '200 Ok',
         data: candidate
     })
 })
+
+
 
 module.exports = router
