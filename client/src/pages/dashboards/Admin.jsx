@@ -4,7 +4,7 @@ import NavigationBar from '../../components/NavigationBar';
 export default function Admin() {
     return(
         <>
-        <NavigationBar/>
+        <NavigationBar isLoggedIn={true}/>
         <Container className="d-flex justify-content-center align-items-center p-3 col-4">
                 <form className="justify-content-center">
                   <Form>
