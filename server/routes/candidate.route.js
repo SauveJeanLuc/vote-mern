@@ -204,7 +204,7 @@ router.put('/unvote/:id', async(req, res) => {
     }
 })
 
-router.get('/:id', async (req, res)=>{
+router.get('/id/:id', async (req, res)=>{
 
     if(!mongoose.Types.ObjectId.isValid(req.params.id)){
         return res.send({
@@ -227,6 +227,26 @@ router.get('/:id', async (req, res)=>{
     return res.status(200).send({
         status: '200 OK',
         data: candidate
+    })
+
+})
+
+router.get('/all', async (req, res)=>{
+
+    const candidates = await Candidate.find({})
+
+    if(!candidates){
+        return res.status(400).send({
+            status: '400 Bad Request',
+            message: 'Candidate Not Found',
+        })
+    }
+
+    console.log(candidates)
+
+    return res.status(200).send({
+        status: '200 OK',
+        data: candidates
     })
 
 })
