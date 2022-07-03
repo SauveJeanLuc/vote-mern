@@ -6,7 +6,7 @@ sudo su
 docker build <directory-of-dockerfile> -t(custom name) <custom-name> -f(file: default Dockerfile) <custom-file> 
 docker build . -t sauvejeanluc/votingapp-server -f Dockerfile.dev
 
-//
+//Listing Images
 docker images
 
 //run
