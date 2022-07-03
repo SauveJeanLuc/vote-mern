@@ -13,6 +13,6 @@ docker run -p <port-pc>:<port-container> <image-name>
 docker run -p 3000:3000 sauvejeanluc/votingapp-server
 
 // push
-
 docker login
 docker push <image-name>
+docker stop -t 60 2022f6026f05
