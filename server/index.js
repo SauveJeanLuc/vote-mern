@@ -5,6 +5,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user.route')
 const candidateRoutes = require('./routes/candidate.route')
+const { Swaggiffy } = require('swaggiffy'); // Using require
+new Swaggiffy().setupExpress(app).swaggiffy();
+
 
 dotenv.config()
 app.use(cors()) // Handle CORS
@@ -32,6 +35,6 @@ app.get('/', (req,res) => {
     res.send('VOTING SYSTEM ࡙࡙࡙࡙࡙');
 })
 
-app.listen(3030, () => {
-    console.log('Server Listening on Port 3030');
+app.listen(3032, () => {
+    console.log('Server Listening on Port 3032');
 })

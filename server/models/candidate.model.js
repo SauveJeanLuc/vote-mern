@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Joi = require("joi")
+const { registerSchema } = require('swaggiffy')
 
 const Candidate = new mongoose.Schema(
     {
@@ -21,6 +22,8 @@ const Candidate = new mongoose.Schema(
         }
     }
 )
+
+registerSchema("Candidate", Candidate, {orm: "mongoose"})
 
 const model = mongoose.model("Candidate", Candidate)
 

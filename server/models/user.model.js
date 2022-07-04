@@ -1,6 +1,7 @@
 const Joi = require('joi')
 const { joiPassword } = require('joi-password')
 const mongoose = require('mongoose')
+const { registerSchema } = require('swaggiffy')
 
 
 
@@ -31,6 +32,8 @@ const User = new mongoose.Schema(
     }
     // { collection: 'user_data'}
 )
+
+registerSchema("User", User, {orm: "mongoose"})
 
 function validateUser(user){
     const schema = Joi.Object(

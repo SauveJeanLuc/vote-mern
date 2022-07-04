@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const { registerDefinition } = require("swaggiffy");
 
 router.post('/register', async (req, res)=>{
 
@@ -70,5 +71,7 @@ router.post('/login', async (req, res) => {
         })
     }
 })
+
+registerDefinition(router, {basePath: "/api/user", tags: "User", mappedSchema: "User"})
 
 module.exports = router

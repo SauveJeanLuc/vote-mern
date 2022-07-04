@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { registerDefinition } = require("swaggiffy");
 const {Candidate, validateCandidate} = require('../models/candidate.model')
 
 router.post('/register', async (req, res) => {
@@ -276,6 +277,6 @@ router.delete('/:id', async (req, res) => {
     })
 })
 
-
+registerDefinition(router, {basePath: "/api/candidate", tags: "Candidate", mappedSchema: "Candidate"})
 
 module.exports = router

@@ -1,0 +1,1 @@
+npx swaggiffy init -p 3032
