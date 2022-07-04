@@ -40,4 +40,32 @@
 - dockerize server 
 - dockerize client
 - run docker-compose : docker-compose up
-- 
+
+
+===============
+    SWAGGIFY
+===============
+
+--> Go in Terminal
+- npm i swaggiffy
+- npx swaggiffy init
+
+--> Go in index.js
+- const { Swaggiffy } = require('swaggiffy'); // Using require
+- new Swaggiffy().setupExpress(app).swaggiffy();
+
+--> ignore swagger.json
+
+nodemon --ignore '*swagger.json'
+
+--> Register all models
+const { registerSchema } = require('swaggiffy')
+const model = mongoose.model("Candidate", CandidateSchema)
+
+--> Register all routes
+const { registerDefinition } = require("swaggiffy");
+
+
+
+--> Access swagger
+- localhost:PORT/api-docs
