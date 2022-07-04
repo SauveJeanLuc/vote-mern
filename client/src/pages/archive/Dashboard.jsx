@@ -15,7 +15,7 @@ export default function Dashboard  () {
       const req = await fetch('http://localhost:3030/api/quote', {
          method: 'GET',
          headers: {
-            'x-access-token': localStorage.getItem('token')
+            'Authorization': "Bearer "+localStorage.getItem('token')
          },       
       })
 
@@ -56,7 +56,7 @@ export default function Dashboard  () {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
-            'x-access-token': localStorage.getItem('token')
+            'Authorization': 'Bearer '+localStorage.getItem('token')
          },       
          body: JSON.stringify({
             quote: tempQuote,
