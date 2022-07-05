@@ -1,5 +1,15 @@
 version: '2.2'
 services:
+  nginx:
+    depends_on:
+      - server
+      - client
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
   client:
     depends_on: [server]
     build:

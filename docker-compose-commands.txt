@@ -1,0 +1,13 @@
+#Dealing with compose cache
+
+docker-compose rm -f
+docker-compose pull
+docker-compose up
+
+
+mern_nginx                                latest         743f4625567e   14 minutes ago   142MB
+<none>                                    <none>         6c92e994a21f   2 hours ago      174MB
+mern_client                               latest         9b5bba5932a5   3 days ago       312MB
+mern_server                               latest         5f35a73096aa   3 days ago       227MB
+
+docker rmi 743f4625567e 6c92e994a21f 9b5bba5932a5 5f35a73096aa
